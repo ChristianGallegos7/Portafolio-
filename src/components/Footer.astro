@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<footer class="footer">
+  <div class="footer__content">
+    <div class="footer__social">
+      <a
+        href="https://www.linkedin.com/in/saint-christian/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+      >
+        <Icon name="simple-icons:linkedin" size="24" />
+      </a>
+      <a
+        href="https://github.com/saint-christian"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >
+        <Icon name="simple-icons:github" size="24" />
+      </a>
+      <a href="mailto:saintchristian@email.com" aria-label="Email">
+        <Icon name="simple-icons:gmail" size="24" />
+      </a>
+    </div>
+    <div class="footer__copyright">
+      © {new Date().getFullYear()} Saint Christian. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<style>
+    footer{
+        height: 100vh;
+    }
+</style>

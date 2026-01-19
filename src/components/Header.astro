@@ -1,0 +1,165 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navItems = [
+  { name: "Inicio", href: "#home" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Resume", href: "#resume" },
+  { name: "Portafolio", href: "#portfolio" },
+];
+---
+
+<header class="header">
+  <nav class="navbar">
+    <ul class="navbar__izquierda">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={item.href}>{item.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="navbar__derecha">
+      <li>
+        <a
+          href="https://www.linkedin.com/in/saint-christian/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn"
+        >
+          <Icon name="simple-icons:linkedin" size="24" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <h1>Christian <span>Gallegos</span></h1>
+    <p>Software Developer</p>
+  </div>
+</section>
+
+<style>
+  :root {
+    --rojo: #c30f45;
+    --morado: #231123;
+    --gris-claro: #e0e0e6;
+  }
+
+  /* --- NAVBAR INTEGRADA --- */
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    /* Sin color de fondo para que se vea la imagen del Hero */
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Opcional: un ligero difuminado solo en la barra para legibilidad */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .navbar__izquierda,
+  .navbar__derecha {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  li a {
+    text-decoration: none;
+    color: var(--gris-claro);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  li a:hover {
+    color: var(--rojo);
+  }
+
+  /* --- HERO CON PARALLAX --- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    /* Fondo con Parallax */
+    background-image: url("../assets/coding.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Este es el efecto Parallax */
+    overflow: hidden;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Degradado que nace desde tu color morado */
+    background: linear-gradient(
+      to right,
+      rgba(35, 17, 35, 0.9) 10%,
+      rgba(35, 17, 35, 0.4) 50%,
+      transparent 100%
+    );
+    z-index: 1;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    color: white;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5rem); /* Tamaño fluido */
+    margin: 0;
+    line-height: 1;
+    font-weight: 800;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--rojo);
+    text-shadow: 0 0 20px rgba(195, 15, 69, 0.4);
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: var(--gris-claro);
+    margin-top: 1rem;
+    letter-spacing: 4px;
+    font-weight: 300;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      background-attachment: scroll; /* El parallax suele fallar en móviles */
+      padding-left: 5%;
+    }
+    .navbar__izquierda {
+      display: none;
+    }
+  }
+</style>
